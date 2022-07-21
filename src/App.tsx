@@ -1,11 +1,15 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
-import { RefresherStack } from "../src/navigation/routes";
-import { ContextProvider } from "../src/contexts/core.context";
+import { RefresherStack } from "../src/navigation/routes"
+import { ContextProvider } from "../src/contexts/core.context"
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
+/**
+ * Start the application
+ * @returns
+ */
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -13,7 +17,7 @@ function App() {
         <RefresherStack></RefresherStack>
       </ContextProvider>
     </QueryClientProvider>
-  );
+  )
 }
 
-export default App;
+export default App
