@@ -1,5 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import { LoadingButton } from "@mui/lab"
+import { useRouter } from "next/router"
 
 import { HomeScreenProps } from "./home.type"
 import { LaunchCard } from "../../components/atoms/launch-card/launch-card"
@@ -16,6 +17,7 @@ export const HomeScreen = ({ blah }: HomeScreenProps) => {
     dailyForecast,
   } = useWeather()
   console.log(dailyForecast)
+  const router = useRouter()
   if (isWeatherLoading) {
     return <LoadingButton loading={true} />
   }
@@ -30,7 +32,9 @@ export const HomeScreen = ({ blah }: HomeScreenProps) => {
     })
   }
 
-  const onShowHistory = () => {}
+  const onShowHistory = () => {
+    router.push("/chart-home")
+  }
   return (
     <div className="App">
       <LaunchCard

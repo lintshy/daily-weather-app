@@ -1,13 +1,13 @@
 import React from "react"
 
-import { HomeScreen } from "./home"
+import HomePage from "../pages/home"
 
 /**
  * Start the application
  * @returns
  */
 function App() {
-  return <HomeScreen blah={"string"} />
+  return <HomePage />
 }
 
 export default App

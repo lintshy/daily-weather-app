@@ -19,8 +19,8 @@ export const WeatherContext = createContext<WeatherContextDef>(null)
 export const useWeather = () => useContext(WeatherContext)
 
 export const WeatherProvider = ({ children }: { children?: ReactNode }) => {
-  const [dailyForecast, setDailyForecast] = useState<DataSeries[]>()
-  const [currentWeather, setCurrentWeather] = useState<DataSeries>()
+  const [dailyForecast, setDailyForecast] = useState<DataSeries[]>([])
+  const [currentWeather, setCurrentWeather] = useState<DataSeries>(null)
   const [coordinates, setCoordinates] = useState({
     latitude: defaultCoordinates.latitude,
     longitude: defaultCoordinates.longitude,
