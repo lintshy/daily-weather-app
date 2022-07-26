@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import { LoadingButton } from "@mui/lab";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react"
+import { LoadingButton } from "@mui/lab"
 
-import { HomeScreenProps } from "./home.type";
-import "../../App.css";
-import { LaunchCard } from "../../components/atoms/launch-card/launch-card";
-import { CoordinatePicker } from "../../components/molecules/coordinate-picker/coordinate-picker";
-import { useWeather } from "../../contexts/weather/weather.context";
+import { HomeScreenProps } from "./home.type"
+import { LaunchCard } from "../../components/atoms/launch-card/launch-card"
+import { CoordinatePicker } from "../../components/molecules/coordinate-picker/coordinate-picker"
+import { useWeather } from "../../contexts/weather/weather.context"
 
 export const HomeScreen = ({ blah }: HomeScreenProps) => {
-  const navigate = useNavigate();
   const {
     isWeatherLoadError,
     isWeatherLoading,
@@ -17,25 +14,23 @@ export const HomeScreen = ({ blah }: HomeScreenProps) => {
     setCoordinates,
     currentWeather,
     dailyForecast,
-  } = useWeather();
-  console.log(dailyForecast);
+  } = useWeather()
+  console.log(dailyForecast)
   if (isWeatherLoading) {
-    return <LoadingButton loading={true} />;
+    return <LoadingButton loading={true} />
   }
   if (isWeatherLoadError) {
-    return <h1>error</h1>;
+    return <h1>error</h1>
   }
 
   const onCheck = (latitude: string, longitude: string) => {
     setCoordinates({
       latitude,
       longitude,
-    });
-  };
+    })
+  }
 
-  const onShowHistory = () => {
-    navigate("./history");
-  };
+  const onShowHistory = () => {}
   return (
     <div className="App">
       <LaunchCard
@@ -52,5 +47,5 @@ export const HomeScreen = ({ blah }: HomeScreenProps) => {
         onCheck={onCheck}
       />
     </div>
-  );
-};
+  )
+}
