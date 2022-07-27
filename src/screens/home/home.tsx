@@ -1,22 +1,26 @@
 import React from "react"
 import { LoadingButton } from "@mui/lab"
 import { useRouter } from "next/router"
+import { useSelector, useDispatch } from "react-redux"
 
+import type { RootState } from "../../__core/core.store"
 import { HomeScreenProps } from "./home.type"
 import { LaunchCard } from "../../components/atoms/launch-card/launch-card"
 import { CoordinatePicker } from "../../components/molecules/coordinate-picker/coordinate-picker"
 import { useWeather } from "../../contexts/weather/weather.context"
+import { setCoordinates } from "../../slices/weather/weather.slice"
 
 export const HomeScreen = ({ blah }: HomeScreenProps) => {
   const {
     isWeatherLoadError,
     isWeatherLoading,
-    coordinates,
-    setCoordinates,
     currentWeather,
     dailyForecast,
   } = useWeather()
-  console.log(dailyForecast)
+  const dispatch = useDispatch()
+  const coordinates = useSelector(
+    (state: RootState) => state.weather.coordinates
+  )
   const router = useRouter()
   if (isWeatherLoading) {
     return <LoadingButton loading={true} />
@@ -26,10 +30,12 @@ export const HomeScreen = ({ blah }: HomeScreenProps) => {
   }
 
   const onCheck = (latitude: string, longitude: string) => {
-    setCoordinates({
-      latitude,
-      longitude,
-    })
+    dispatch(
+      setCoordinates({
+        latitude,
+        longitude,
+      })
+    )
   }
 
   const onShowHistory = () => {
